@@ -28,17 +28,16 @@ class Estado(object):
         self.expande()
         caminho.append(self)
 
-        if self.profundidade == 10:
-            return self.pai
+        # Define um profundidade limite para a busca
+        # if self.profundidade == 32:
+        #     return self.pai
 
         for filho in self.filhos:
             if filho != self:
                 if filho not in visitados:
                     visitados.append(filho)
                     return filho
-        ret = self.pai
-        del self
-        return ret
+        return self.pai
 
     def expande(self):
         self.move_abaixo()
@@ -144,7 +143,7 @@ def gerar_estado_aleatorio(str_estado):
 
 if __name__ == '__main__':
     str_estado_inicial = "AXBCDEFGH"
-    # str_estado_inicial = gerar_estado_aleatorio("ABXCDEFGH")
+    str_estado_inicial = gerar_estado_aleatorio("ABXCDEFGH")
 
 
     estado_objetivo = Estado("XABCDEFGH")
@@ -158,8 +157,8 @@ if __name__ == '__main__':
         try:
             estado = estado.proximo()
             print("-----------------------------------------")
-            print("P : " + str(estado.profundidade))
-            print("ID: " + str(estado.id))
+            print("Prof. : " + str(estado.profundidade))
+            print("Num.  : " + str(estado.id))
             print(estado)
             print("-----------------------------------------")
         except:
@@ -169,7 +168,7 @@ if __name__ == '__main__':
 
 
         # if estado.profundidade in caminho:
-        #     print("acho")
+        #     print("achou")
         # caminho.append(estado.profundidade)
 
 

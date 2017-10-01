@@ -25,6 +25,7 @@ class Estado(object):
                 if not filho.visitado:
                     filho.visitado = True
                     return filho
+
         return self.pai
 
     def expande(self):

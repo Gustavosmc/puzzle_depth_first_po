@@ -22,8 +22,8 @@ class Estado(object):
         caminho.append(self)
         for filho in self.filhos:
             if filho != self.pai:
-                if filho not in visitados:
-                    visitados.append(filho)
+                if not filho.visitado:
+                    filho.visitado = True
                     return filho
         return self.pai
 
@@ -118,10 +118,13 @@ class Estado(object):
 if __name__ == '__main__':
     estado_objetivo = Estado("XABCDEFGH")
     estado = Estado("ABCDEXFGH", (3, 3))
+    cont = 0
     while estado is not None:
         print(estado)
         if estado == estado_objetivo: break
         estado = estado.proximo()
+        cont += 1
+        print(cont)
 
 
 
